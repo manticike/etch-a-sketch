@@ -1,0 +1,23 @@
+
+* {
+  margin: 0;
+}
+
+ #container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 960px;
+  width: 960px;
+  margin-top: 50px;
+  margin-left: 50px;
+} 
+
+.row, .col {
+  display: flex;
+  border: 1px solid #ff0000;
+}
+
+#btn {
+  
+}
+
