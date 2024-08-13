@@ -1,19 +1,26 @@
 const mainContainer = document.querySelector('#container');
 const gridSize = document.querySelector('#btn');
-// Container size
 const padSize = 960;
 
+function getSquareSize() {
+  let userInput = prompt('Enter the number of squares you want');
+  let squareInteger = parseInt(userInput);
 
-function getSqureSize(userInput) {
-  userInput = prompt('Enter the number of squares');
-  let squareSizeInteger = parseInt(userInput);
-  return squareSizeInteger;
+  if (isNaN(squareInteger) || squareInteger <= 0) {
+    alert('Please enter a valid number greater than 0');
+    return null;
+  } else if (squareInteger > 100) {
+    alert('Size larger than 100 will consume too much resources');
+    return null;
+  } else {
+    return squareInteger;
+  }
 }
-// Event listener to get the grid size
-gridSize.addEventListener('click', getSqureSize);
 
-//A function to create the square grid
 function createGrid(size) {
+  // clear existing grid
+  mainContainer.textContent = '';
+
   for (let i = 0; i < size; i++) {
     let row = document.createElement('div');
     row.classList.add('row');
@@ -22,7 +29,7 @@ function createGrid(size) {
 
     for (let j = 0; j < size; j++) {
       let col = document.createElement('div');
-      col.classList.add('col', 'grid-item');
+      col.classList.add('col');
       col.style.width = padSize/size + 'px';
       col.style.height = padSize/size + 'px';
 
@@ -45,4 +52,10 @@ function getRandomColor() {
   return color;
 }
 
-createGrid(16);
+// Event listener to get the grid size
+gridSize.addEventListener('click', function() {
+  let size = getSquareSize();
+  if (size !== null) {
+    createGrid(size);
+  }
+});
